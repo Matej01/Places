@@ -1,0 +1,76 @@
+# Places - RESTful
+## Algemein
+
+PlacesObjects{
+    "id": Integer,
+    "title": STRING,
+    "lat": FLOAT,
+    "lng": FLOAT
+}
+
+
+
+## GET 
+
+Daten abrufen allle
+-URL: http://localhost:26893/places/
+-Methode: GET
+-Request-Daten: {}
+-Response-Format: JSON
+-Response-Daten: {
+    "places": ARRAY mit PlacesObjects
+}
+
+## neuen Ort anlegen
+
+-URL: http://localhost:26893/places/
+-Methode: POST 
+-Request-Datenformat: x-www-urlencoded (normale POST-daten)
+-Request-Daten {
+    "title": STRING,
+    "lat": FLOAT,
+    "lng": FLOAT
+}
+
+Response-Format: JSON
+
+### erfolgreich
+- response-daten: {
+    "status": "success",
+    "id": INTEGER 
+}
+
+### nicht erfolgreich - Duplikat
+- response-daten: {
+    "status": "error",
+    "code": 601
+    "message": "Ort existiert bereits."
+     
+}
+
+
+## Apendix
+
+### Code 601
+Duplikat in daten gefunden
+
+
+## Daten löschen
+
+Daten abrufen allle
+-URL: http://localhost:26893/places/
+-Methode: DELETE
+-Request-Daten: {}
+-Response-Format: JSON
+
+### erfolgreich
+- response-daten: {
+    "status": "success"
+    
+}
+
+### nicht erfolgreich - Duplikat
+- response-daten: {
+    "status": "error",
+    "code": 404,
+    "message": "Ort existiert nicht."
